@@ -1,0 +1,10 @@
+---
+title: "SnowfallNYC"
+author: "Fraz Aslam"
+format: html
+editor: visual
+---
+
+## Approach
+
+The data-set I have selected for the first Assignment is NYC snowfall in central park between the years 1869-2022. The data-set is sourced from Kaggle titled "New York City Weather: A 154-Year Retrospective. I was inspired to select this data from our recent snowstorm in NYC just this past weekend. I wanted to see what the worst occurances of snowfall have been in NYC history and compare it with our most recent experience.

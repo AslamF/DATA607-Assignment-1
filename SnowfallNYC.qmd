@@ -3,8 +3,74 @@ title: "SnowfallNYC"
 author: "Fraz Aslam"
 format: html
 editor: visual
+execute: 
+  cache: false
 ---
 
 ## Approach
 
-The data-set I have selected for the first Assignment is NYC snowfall in central park between the years 1869-2022. The data-set is sourced from Kaggle titled "New York City Weather: A 154-Year Retrospective. I was inspired to select this data from our recent snowstorm in NYC just this past weekend. I wanted to see what the worst occurances of snowfall have been in NYC history and compare it with our most recent experience.
+The data-set I have selected for the first Assignment is NYC snowfall in central park between the years 1869-2022. The data-set is sourced from Kaggle titled "[New York City Weather: A 154-Year Retrospective](https://www.kaggle.com/datasets/danbraswell/new-york-city-weather-18692022)". I was inspired to select this data from our recent snowstorm in NYC just this past weekend. I wanted to see what the worst occurances of snowfall have been in NYC history and compare it with our most recent experience.
+
+Loading libraries that are required for me to display the data in a presentable fashion
+
+```{r}
+library(tidyverse)
+library(gt)
+
+```
+
+Here I am loading the data-set from a RAW github file and displaying the structure and how many values there are in the actual data-set
+
+```{r}
+
+url <- "https://raw.githubusercontent.com/AslamF/DATA607-Assignment-1/refs/heads/main/NYC_Central_Park_weather_1869-2022.csv"
+
+df <- read_csv(
+  file = url,
+  show_col_types = FALSE,
+  progress = FALSE
+)
+
+glimpse(df)
+
+
+
+```
+
+Here i am displaying the first 100 rows of the data-set using the library gt
+
+```{r}
+df |>
+  head(100) |>
+  gt()
+```
+
+Here i am displaying basic handling of the data-set by showing the first 3 columns and only the first 5 rows of the data-set. Saving it in a new variable df1 and displaying that variable using the gt library
+
+```{r}
+
+df1 <- df[1:5, c(1,2,3)]
+
+df1 |> 
+  gt()
+```
+
+## Subset data focusing on SNOW
+
+I have created a subset of the data, focusing on the SNOW (data is displayed in inches) and organize it in descending order. I also only displayed the top 50 of those results as the data-set is incredibly large.
+
+```{r}
+df |>
+  arrange(desc(SNOW)) |>
+  head(50) |>
+  select(DATE, SNOW) |>
+  gt() |>
+  tab_header(
+    title = "Top 100 Snowiest Days in NYC Central Park",
+    subtitle = "1869-2022"
+  )
+```
+
+## Conclusion
+
+In this first assignment I was able to identify a data-set with unique information that I wanted to parse and display. I was able to upload and access that data-set and then display specific information as wanted. In particular I was able to see the highest record of snowfall in inches over the past 150 years in NYC. The results show that January of 2016 had the largest amount of snowfall with a shocking 27 inches and right below that is 26 inches in December of 1947! There are a-lot more ways I can explore this data such as comparing amount of snow per year and creating sub-set of data for that.
